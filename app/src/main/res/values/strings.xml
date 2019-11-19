@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">StreamsWithCoroutines</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email address</string>
+    <string name="username">Display name</string>
+    <string name="update_user">Update user</string>
+</resources>
