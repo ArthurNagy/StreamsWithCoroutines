@@ -7,6 +7,7 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.arthurnagy.streamswithcoroutines.repository.user.UserRepository
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
@@ -27,7 +28,13 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            userRepository.getUser()
+            userRepository.getUserFlow()
+                .map { user ->
+                    UserUiModel.from(user)
+                }
+                .collect { userUiModel ->
+                    // Use the data received on the UI thread
+                }
         }
 //        userRepository.getUser(object : DataCallback<User> {
 //            override fun onResult(result: User) {
@@ -44,6 +51,12 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 //            }
 //            // Update UI
 //        }
+    }
+
+    fun fetchUser() {
+        viewModelScope.launch {
+            userRepository.getUser()
+        }
     }
 
     fun updateUser(firstName: String, lastName: String, displayName: String, email: String) {
