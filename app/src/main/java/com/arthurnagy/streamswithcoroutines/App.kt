@@ -6,6 +6,7 @@ import com.arthurnagy.streamswithcoroutines.api.UserServiceImpl
 import com.arthurnagy.streamswithcoroutines.repository.user.UserLocalSource
 import com.arthurnagy.streamswithcoroutines.repository.user.UserRemoteSource
 import com.arthurnagy.streamswithcoroutines.repository.user.UserRepository
+import com.arthurnagy.streamswithcoroutines.user.UserViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin

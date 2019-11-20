@@ -1,6 +1,6 @@
 package com.arthurnagy.streamswithcoroutines.repository.user
 
-import com.arthurnagy.streamswithcoroutines.User
+import com.arthurnagy.streamswithcoroutines.user.User
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel

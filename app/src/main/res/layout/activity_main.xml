@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.arthurnagy.streamswithcoroutines.UserViewModel" />
+            type="com.arthurnagy.streamswithcoroutines.user.UserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UserActivity">
+        tools:context=".user.UserActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_start"
@@ -33,79 +33,88 @@
             android:id="@+id/profile_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/first_keyline"
+            android:background="@drawable/bg_profile_picture"
             android:importantForAccessibility="no"
             android:padding="@dimen/second_keyline"
+            android:src="@drawable/ic_baseline_person_outline_24"
+            android:tint="?attr/colorControlNormal"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/guide_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintWidth_percent="0.45" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/first_name"
+            android:id="@+id/first_name_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/first_keyline"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintStart_toStartOf="@id/guide_start"
             app:layout_constraintTop_toBottomOf="@id/profile_image">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/first_name"
                 android:inputType="textPersonName"
-                android:text="@{viewModel.user.firstName}" />
+                android:text="@={viewModel.user.firstName}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/last_name"
+            android:id="@+id/last_name_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_padding"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintStart_toStartOf="@id/guide_start"
-            app:layout_constraintTop_toBottomOf="@id/first_name">
+            app:layout_constraintTop_toBottomOf="@id/first_name_input">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/last_name"
                 android:inputType="textPersonName"
-                android:text="@{viewModel.user.lastName}" />
+                android:text="@={viewModel.user.lastName}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username"
+            android:id="@+id/username_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_padding"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintStart_toStartOf="@id/guide_start"
-            app:layout_constraintTop_toBottomOf="@id/last_name">
+            app:layout_constraintTop_toBottomOf="@id/last_name_input">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
                 android:inputType="textPersonName"
-                android:text="@{viewModel.user.username}" />
+                android:text="@={viewModel.user.displayName}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email"
+            android:id="@+id/email_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_padding"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintStart_toStartOf="@id/guide_start"
-            app:layout_constraintTop_toBottomOf="@id/username">
+            app:layout_constraintTop_toBottomOf="@id/username_input">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 android:inputType="textPersonName"
-                android:text="@{viewModel.user.email}" />
+                android:text="@={viewModel.user.email}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -113,11 +122,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/second_keyline"
             android:gravity="center"
+            android:onClick="@{(v) -> viewModel.updateUser(firstName.text, lastName.text, username.text, email.text)}"
             android:text="@string/update_user"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintStart_toStartOf="@id/guide_start"
-            app:layout_constraintTop_toBottomOf="@id/email"
+            app:layout_constraintTop_toBottomOf="@id/email_input"
             app:layout_constraintVertical_bias="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
