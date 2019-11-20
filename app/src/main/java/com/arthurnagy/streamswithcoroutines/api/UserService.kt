@@ -66,6 +66,11 @@ class UserServiceImpl : UserService {
     }
 
     private companion object {
-        private val MOCK_USER = User(1, "John", "Doe", "johnny.d", "me@johndoe.com")
+        private val MOCK_USER = User(
+            id = 1,
+            firstName = "John",
+            lastName = "Doe",
+            email = "me@johndoe.com"
+        )
     }
 }
